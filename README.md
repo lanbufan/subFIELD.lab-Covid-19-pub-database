@@ -1,5 +1,6 @@
 # subFIELD.lab-Covid-19-pub-database
-the most up-to-date and  comprehensive bibliometric database on covid-19 research
+
+An up-to-date and comprehensive bibliometric database on covid-19 research
 
 Welcome to the home of the subFIELD.lab covid-19 publication database project. Research on covid-19 is marching full steam and is being published at a lightning fast speed, and will continue in a foreseeable future, in an increasing number of fields.
 
