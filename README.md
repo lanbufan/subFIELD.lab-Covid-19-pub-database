@@ -4,7 +4,7 @@ Welcome to the official home of the subFIELD.lab covid-19 [linked] publication d
 
 Therefore, we need a unique database project merging multiple sources of bibliometric information on Covid-19 scientific work. This is what we are building.
 
-Our goal is to provide (1) an up-to-date and (2) comprehensive bibliometric database on covid-19 publications with daily updates (5, 391 cases as of today). We centralize and merge Covid-19 related publications from more than four authoritative sources.  In other words, our database is building on a number of ongoing and important projects; World Health Organization's Global research on coronavirus disease (COVID-19), LitCovid and CORD-19.
+Our goal is to provide (1) an up-to-date and (2) comprehensive bibliometric database on covid-19 publications with daily updates (5, 391 cases as of today). We consolidate and link Covid-19 related publications from more than four authoritative sources.  In other words, our database is building on a number of ongoing and important projects; World Health Organization's Global research on coronavirus disease (COVID-19), LitCovid and CORD-19.
 
 At this point of the project, the process of automating the pipeline and data linking of those sources into one data frame is mostly done. But there is a lot of exciting work ahead if you are interested to join us. We envision this project as an open-source and collaborative project. The most pressing tasks to undertake are:
 
