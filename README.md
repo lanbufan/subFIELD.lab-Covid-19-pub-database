@@ -2,7 +2,7 @@
 
 Welcome to the official home of the subFIELD.lab covid-19 [linked] publication database. Research on covid-19 is marching full steam and is being published at a lightning fast speed, and will continue in a foreseeable future, in an increasing number of fields.
 
-Therefore, we need a unique database project merging multiple sources of bibliometric information on Covid-19 scientific work. This is what we are building as an open-source and collaborative effort. Contact me if you are interested in contributing. 
+Therefore, we need a unique database project merging multiple sources of bibliometric information on Covid-19 scientific work. This is what we are building as an open-source and collaborative effort. Please contact me if you are interested in contributing in any way.
 
 Our goal is to provide (1) an up-to-date and (2) comprehensive bibliometric database on covid-19 publications with daily updates (5, 391 cases as of today). We consolidate and link Covid-19 related publications from more than four authoritative sources.  In other words, our database is building on a number of ongoing and important projects; World Health Organization's Global research on coronavirus disease (COVID-19), LitCovid and CORD-19.
 
