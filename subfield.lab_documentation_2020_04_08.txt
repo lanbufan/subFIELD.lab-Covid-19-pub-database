@@ -1,0 +1,674 @@
+# documentation
+
+              ###                                         ###         ###
+ ####          ##    ###### #### ###### ####   ######      ##          ##
+##  #          ##     ##  #  ##   ##  #  ##     ##  ##     ##          ##
+###   ### ##   ####   ##     ##   ##     ##     ##  ##     ##   ###    ####
+ ###   ## ##   ## ##  ####   ##   ####   ##     ##  ##     ##  ## ##   ## ##
+  ###  ## ##   ## ##  ##     ##   ##     ##     ##  ##     ##   ####   ## ##
+#  ##  ## ##   ## ##  ##     ##   ##  #  ##  #  ##  ## ##  ##  ## ##   ## ##
+####    #####  ####  ####   #### ###### ###### ######  ## ####  #####  ####
+                                                                subFIELD.lab
+
+
+In a near future, the documentation will be mostly containing technical information [i.e., codebook], but in the meantime,
+I use this doc to flesh out and explain:
+
+1. Data Source
+2. Methodology
+3. To-Do
+4. Codebook
+
+# Project Workflow
+
+[1] - Identifying reliable sources of bibliometric data on covid-19 research [completed, mostly]
+
+[2] - Linking Datasets & associated meta-data fields/variables [completed, mostly]
+
+[3] - Umbrella goal is to accomplish [1] and [2] programmatically using Python [or other languagues] in order to:
+
+a. automate the daily fetching of those data sources to track any new cases
+b. link them, wrangled them, clean them
+c. identify missing data and devise a programmatic way to get fill it in
+
+MAIN TASK:
+
+i - Building the Daily Scientific Citations Tracker
+
+[see the section below call > Building a Daily Citations Tracker as this is the heart of the matter]
+
+ii - On Other Meaningful Contributions to this Project
+
+To be sure, I think that other tasks/contributions are valuable as well. For instance, I spend time already
+generating a gender variable for each author since this is an important dimension, or line of inquiry in the
+sociology of science. I am also nearly done writing a WOS institutional affiliation parser since this data-pts
+can speak to question of prestige and also to dynamics of academic science and private sector collaboration. And,
+to be sure, there is a lot of work to be done to classify each paper by topic(s), or discipline(s). The dataset also
+lack data-pts on country(ies) of region(s) of focus in publications. As you can see, there are lots of "entries" to
+work your way in this project. That said, I believe the Daily Scientific Citations Tracker is the one that
+will pose the largest challenge to developers, programmers, and data scientists...and the most reward.
+
+For instance, we can except a variety of stakeholders who will need covid-19-related statistics in producing their
+own reports:
+
+1. number of institutions, countries, disciplines involved
+
+[4] - Identifying additional sources for publications and missing data-points [mostly under control]
+
+[5] - Recruiting volunteers to sustain the project [write me an email, f.lachapelle@alumni.ubc.ca]
+
+# Project Goal
+
+The goal of the Subfield.lab covid-19 linked publication database project is to build an up-to-date and comprehensive bibliometric index
+of scholarly work published on the novel corona virus. The website will soon have a detailed and separated methodology
+section, but in the meantime, all relevant information will be centralized in the doc.txt page.
+
+The first task was to identify bibliometric source(s) of validated publications on covid-19. As our yardstick, we are using
+both WHO's dataset and LitCovid's, which updates their list of articles daily. But since, for instance, LitCovid relies on a
+relatively small number of keywords in PubMed, we also use WoS with a slightly larger list of keywords. Wos has a massive
+advantage in terms of depth of meta data fields. The citation meta-field is of particular importance. I expand on this very shortly
+[see daily citations tracker task]. At this point, CORD-19 database is NOT used to identify additional covid-19 research since
+theit database includes all research on coronaviruses since the 1970s. That said, we are using large CORD-19 dataset of articles
+and already parsed article pdfs [in json format] to add meta-data fields associated with LitCovid and WOS articles.
+
+-------------------------------------------------------------------------
+# Data Sources Strengths and Weak.:
+
+i-WHO
+
++ daily update
++ focus on covid-19 related research
++ includes not just peer-reviewed articles
++ good coverage of Chinese language research
+
+- limited number of meta-data fields
+
+ii-LitCovid
+
++ daily update
++ focus on covid-19 related research
+
+- limited number of meta-data fields
+- dataset produced only with PubMed
+
+iii-CORD-19 [I also refer to this data source as '_chal' (for challenge) in dataset]
+
++ large number of meta-data fields
++ has 37, 000+ parsed pdf in json format
++ large community of data scientists working on the challenge
++ sporadic updates suggests that CORD-19 could still be an important source to get pdf + parsed pdf
+
+---> this is a crucial point for the making of the daily scientific citations tracker. IF CORD-19
+keep adding parsed pdfs to their already corpus of 37, 000+, it can tremendously help in getting
+references listing. Again, see > Building a Daily Citations Tracker BELOW.
+
+- no daily update, but sporadic
+- dirty data, more of a large data dump covering 50 years of research on coronaviruses
+
+iv-WOS
+
++ large number of meta-data fields
++ decent coverage of covid-19 research
++ meta-data fields includes citations which is the core data needed for the development of the daily citations tracker
+
+- licensing bibliometric product, we need to determine if we can actually use their data for our open-source project
+That is why downloading pdfs is the most urgent task. Developing a script.program to automate the online fetching of pdfs is needed
+
+v-Academia.edu [not yet merged, but a potential data source]
+
++ advantage is that academia.edu might have a coverage of Covid-19 research that is slightly different than what PubMed
+or WHO might focus on, namely more social science and policy papers. This is worth investigating
+
+> Conclusion on Current Data Sources
+
+At this point, I do not believe that the search for additional data source is a priority. WHO's and LitCovid's will most
+likely continue to update their datasets for a little while, if not a few years.
+
+-------------------------------------------------------------------------
+# Methodology
+
+[Again, soon, we will have a proper methodology section].
+
+> Data Harvesting, Wrangling, and Linkage
+
+At this point, since the sourcing and linkage of online Covid-9 datasets is mostly completed, I will only develop on the
+methodology and strategies of data linkage. I completed this task in a 3-4 days marathon.
+
+> Building a Daily Citations Tracker
+
+For now, I want to expand on what I think is the most important and significant challenge in this project, the daily citation tracker.
+For those not familiar with scientific indexing products like WOS core collection or SCOPUS, when discussion "citations" we mean the
+number of time a specific scientific article has been cited since its publication, or early release. By reference, we mean the literature
+cited in one's article. WOS's extended meta-data format includes both, respectively named 'year_pub; year_pub+1, etc' and 'CR'.
+For example, if I published an article in 2018, WOS's citation meta-data fields will include 2018, 2019, and 2020, and for each year,
+the number of time the article was cited.
+
+In the context of the Covid-19 research, which I suspect might be the most intense social mobilization of research resources on one
+single topic in the history of science, a yearly citations tracker is not what we need. We need a tool that will tell us the number
+of citations an article/research work has received everyday since its publication. I might be wrong but I don't believe any licensed
+scientific indexing services like WOS or SCOPUS provide the daily option.
+
+But more importantly here, I don't think we should/could rely solely on those services for this level of citation granularity. We need
+to build our very own tool. I think that John McLevey, a sociologist of science, might have developed such a reference parser for one of
+his project last year (McLevey, 2018). I will get in touch with him soon to discuss this.
+
+Now, before I explain what data we need, let me showcase, schematically, how I think we can build the very first Daily Scientific Citations Tracker:
+
+Imagine the current subfield.lab dataset contains 5, 000 cases of validated Covid-19 research. And imagine that for each of those publication,
+we have the references list. See example 1 below for a good visual example of references list. Those reference lists might have come from WOS,
+or our own pdf parser of references. But once we have those references for each publication and the day of publication for each, we can build a
+reference parser that match references in the references list [i.e., Agrawal, AS, 2016, SCI REP] to an actual publication in our dataset using
+different available fields, be it journal name, author name, article title, doi, etc. Of course, not every references will be a Covid-19 publication,
+but a good deal will be.
+
+example 1: WOS "CR" meta-field, or references
+
+Agrawal AS, 2016, SCI REP-UK, V6, DOI 10.1038/srep31629; Ahmed AE, 2018, EPIDEMIOL INFECT, V146, P489, DOI [10.1017/S095026881700293X,
+10.1017/s095026881700293x]; Al Johani S, 2016, J INFECT PUBLIC HEAL, V9, P216, DOI 10.1016/j.jiph.2016.04.005; Al-Qahtani AA, 2017,
+WOS meta-field "C1"
+
+Now that the idea of a Daily Scientific Citations Tracker is clear, here's a breakdown of the tasks and main challenges:
+
+1. Find those references. The best bet is to write a program to find and download full text pdf. As of today [April 8th], I counted
+potentially 4, 548 publications.
+
+for which we don't have a PDF.
+
+2. We need to ask the CORD-19 challenge folks which pdf parser they used to parsed 37, 000. There are a lot of options out there and it might
+be a good idea to use the same tool as them. There are a lot of choice out there -- i.e., Grobid, Science Parse, Citation, Parscit, etc -
+(Tkaczyk et al., 2018).
+
+3. Speaking of which, in the current dataset, I have not yet fetch the reference lists in the CORD-19 parsed PDF. This is a task to do.
+
+4. Once we have enough references, and before rushing to build the reference parser and reference/publication matcher, we need to engage in some
+serious standardization of our dataset: reference formatting, researcher's names, journal names, names, names, & names.
+
+5. Build reference parser and reference/publication matcher
+
+6. Publish our work in Nature and Science, decline a job at Google, and retire in a forest!
+
+References:
+
+McLevey, J., Graham, A. V., McIlroy-Young, R., Browne, P., & Plaisance, K. S. (2018). Interdisciplinarity and insularity in the diffusion of
+knowledge: an analysis of disciplinary boundaries between philosophy of science and the sciences. Scientometrics, 117(1), 331-349.
+
+Tkaczyk, D., Collins, A., Sheridan, P., & Beel, J. (2018, May). Machine learning vs. rules and out-of-the-box vs. retrained: An evaluation of
+open-source bibliographic reference and citation parsers. In Proceedings of the 18th ACM/IEEE on joint conference on digital libraries (pp. 99-108).
+
+-------------------------------------------------------------------------
+
+Remarks on Data Source's own methodology to generate their dataset.
+
+WHO [coming soon]
+
+LitCovid Method [from their own files]
+
+litcovid_keywords = ['coronavirus', 'ncov', 'cov', '2019-nCoV', 'COVID-19', 'SARS-CoV-2']
+
+# For daily update, we screen the search results of this PubMed query:
+# "coronavirus"[All Fields] OR "ncov"[All Fields] OR "cov"[All Fields] OR
+# "2019-nCoV"[All Fields] OR "COVID-19"[All Fields] OR "SARS-CoV-2"[All Fields].
+# Relevant articles are identified and curated with assistance from an automated
+# machine-learning and text-classification algorithm.
+
+CORD-19 Method [Coming Soon]
+
+Andy White, a data science participant in the CORD-19 challenge suggested using the following sets of keywords in bibliometric
+platforms to generate list of results:
+
+COVID19_SYNONYMS = [
+'covid',
+'coronavirus disease 19',
+'sars cov 2', # Note that search function replaces '-' with ' '
+'2019 ncov',
+'2019ncov',
+r'2019 n cov\b',
+r'2019n cov\b',
+'ncov 2019',
+r'\bn cov 2019',
+'coronavirus 2019',
+'wuhan pneumonia',
+'wuhan virus',
+'wuhan coronavirus',
+r'coronavirus 2\b'
+]
+
+-------------------------------------------------------------------------
+
+CODEBOOK: variables order
+
+Both datasets [__5391; __8278] available for download are structured in the exact same way
+
+subfield_lab_covid_19_pub_database_2020_04_08__3172_cases.csv [version with only validated covid-19 related publications]
+subfield_lab_covid_19_pub_database_2020_04_08__6076_cases.csv [version with all CORD-19 publications from 2019 and 2020]
+
+The third available option is not a ".csv" format, but a ".xlsx", or Microsoft Excel Worksheet format. Compare to csv file,
+this format can save color and other meta-changes the user apply to the lenght of columns for example, and formatting of
+the strings. It makes from a good option to take a quick peak at the data without having to read the codebook.
+
+subfield_lab_covid_19_pub_database_2020_04_08__5391_cases__colored_xlsx_version.xlsx
+
+Abbreviation:
+[i] - when a variable name ends with "_lit" it means the meta-data originated from LitCovid
+[ii] - when a variable name ends with "_chal" or "CORD" it means the meta-data originated from the CORD-19 challenge
+[iii] - when a variable name ends with "_who" it means the meta-data originated from the World Health Organization
+[iv] - when a variable name ends with "_wos" it means the meta-data originated from Web of Science Core Collection [pub. and cit. dwl]
+
+Codebook table of content
+
+Total : 177 variables
+
+*I refer to the publications in the dataset as "case" here
+
+# | variable | ===> description of data-pts
+---------------------------------------------------------------------------------------------
+001 id_master_1
+---------------------------------------------------------------------------------------------
+002 id_master_2
+---------------------------------------------------------------------------------------------
+003 id_who
+---------------------------------------------------------------------------------------------
+004 id_wos
+---------------------------------------------------------------------------------------------
+005 id_cord
+---------------------------------------------------------------------------------------------
+006 id_lit
+---------------------------------------------------------------------------------------------
+007 no_data_source ===> number of data sources providing data for that case
+---------------------------------------------------------------------------------------------
+008 false_positive_chal_wos ===> case that was only matched by CORD-19 and WOS data. Most
+likely not related to Covid-19 specifically
+---------------------------------------------------------------------------------------------
+009 titles_all ===> merge all the case's titles in one variable
+---------------------------------------------------------------------------------------------
+010 journal_chal ===> journal where case was published
+---------------------------------------------------------------------------------------------
+011 journal_lit
+---------------------------------------------------------------------------------------------
+012 journal_who
+---------------------------------------------------------------------------------------------
+013 type_pub_lit
+---------------------------------------------------------------------------------------------
+014 year_who ===> year of publication according to who date
+---------------------------------------------------------------------------------------------
+015 year_lit
+---------------------------------------------------------------------------------------------
+
+CORD-related variables
+
+016 authors_chal ===> list of author(s)
+---------------------------------------------------------------------------------------------
+017 no_authors_chal ===> number of author(s)
+---------------------------------------------------------------------------------------------
+018 gender_chal_1 ===> "_1" denote "first" attempt at predicting gender using first
+name
+---------------------------------------------------------------------------------------------
+019 name_gender_chal_1 ===> coupled array combining first name and gender. If more than
+one author [[first name 1, gender 1, etc...]]
+---------------------------------------------------------------------------------------------
+020 author_name_with_affiliation__chal_pdf ===> coupled array combining full name and inst. aff.
+[full_name, inst. aff., country,
+state/province/region]
+---------------------------------------------------------------------------------------------
+021 first_name ===> from CORD-19. Full name parsed
+---------------------------------------------------------------------------------------------
+022 last_name ===> from CORD-19. Full name parsed
+---------------------------------------------------------------------------------------------
+023 first_last_name_chal ===> from CORD-19. Full name parsed
+---------------------------------------------------------------------------------------------
+024 authors_lit ===> indicates the structure of author name [first last = TRUE; last,
+first = FALSE]
+---------------------------------------------------------------------------------------------
+
+LitCovid-related variables
+
+025 no_authors_lit ===> see 017, same as for CORD-19, but for "LitCovid"
+---------------------------------------------------------------------------------------------
+026 gender_lit_1 ===>
+---------------------------------------------------------------------------------------------
+027 first_last_name_lit
+---------------------------------------------------------------------------------------------
+028 name_gender_lit_1
+---------------------------------------------------------------------------------------------
+
+who-related variables
+
+029 authors_who
+---------------------------------------------------------------------------------------------
+030 no_authors_who
+---------------------------------------------------------------------------------------------
+031 gender_who_1
+---------------------------------------------------------------------------------------------
+032 first_last_name_who
+---------------------------------------------------------------------------------------------
+033 name_gender_who_1
+---------------------------------------------------------------------------------------------
+
+wos-related variables
+
+034 no_authors_wos
+---------------------------------------------------------------------------------------------
+035 gender_wos_1
+---------------------------------------------------------------------------------------------
+036 first_last_name_wos
+---------------------------------------------------------------------------------------------
+037 name_gender_wos_1
+---------------------------------------------------------------------------------------------
+
+038 academic_title ===> from CORD-19 parsed pdf meta-data. Seldomly found in pdf meta-data
+---------------------------------------------------------------------------------------------
+039 title_chal ===> title of publication in CORD-19 data
+---------------------------------------------------------------------------------------------
+040 title_lit
+---------------------------------------------------------------------------------------------
+041 title_who
+---------------------------------------------------------------------------------------------
+042 abstract_chal
+---------------------------------------------------------------------------------------------
+043 abstract_lit
+---------------------------------------------------------------------------------------------
+044 abstract_who
+---------------------------------------------------------------------------------------------
+045 keywords_lit
+---------------------------------------------------------------------------------------------
+046 volume_who
+---------------------------------------------------------------------------------------------
+047 issue_who
+---------------------------------------------------------------------------------------------
+048 pages_who
+---------------------------------------------------------------------------------------------
+049 accession number_who
+---------------------------------------------------------------------------------------------
+050 DOI_who
+---------------------------------------------------------------------------------------------
+051 ref_who
+---------------------------------------------------------------------------------------------
+052 covidence #_who ===> useful unique identifier for WHO dataset articles [currently not
+used for data-linkage, but will in the near future]
+---------------------------------------------------------------------------------------------
+053 study_who ===> interesting data-pts from who's dataset linking publication to existing/
+ongoing research project(s) on covid
+---------------------------------------------------------------------------------------------
+054 notes_who ===> notes linking publications to other publication(s) in who's dataset
+---------------------------------------------------------------------------------------------
+055 tags_who ===> a mix-bag of abstract keywords at time and type of research at others
+---------------------------------------------------------------------------------------------
+056 publish_time ===> potentially important data-pts for Daily Scientific Citations Tracker.
+CORD-19 gives the day of the publication for some cases. Variable
+needs to be re-linked to original CORD dataset since in the data-
+linkage process, the formatting of the day/month/year was lost. Most
+likely a excel problem when informing /.txt/ file to fix latin-1
+encoding errors with utf-8.
+---------------------------------------------------------------------------------------------
+
+Boolean Variables Tracking Data Linkage Efforts
+
+057 current_version ===> True; validated research pertaining to covid-19.
+True cases produce the __5391 file while False is the raw (__8278)
+with non-covid-19 related titles
+---------------------------------------------------------------------------------------------
+058 who_unique_source ===> publication only in WHO dataset
+---------------------------------------------------------------------------------------------
+059 wos_unique_source ===> publication only in WOS dataset
+---------------------------------------------------------------------------------------------
+060 chal_unique_source ===> publication only in CORD-19 dataset
+---------------------------------------------------------------------------------------------
+061 litcovid_unique_source ===> publication only in LIT dataset
+---------------------------------------------------------------------------------------------
+062 who_meta ===> indicates data source, not only unique data source. Indicates that for this
+case/publication we have meta-data pts from WHO's dataset
+---------------------------------------------------------------------------------------------
+063 wos_meta
+---------------------------------------------------------------------------------------------
+064 chal_meta
+---------------------------------------------------------------------------------------------
+065 lit_meta
+---------------------------------------------------------------------------------------------
+066 chal_lit_merged ===> decommissioned. From earlier round of data linkage effort
+---------------------------------------------------------------------------------------------
+067 wos_early_access ===> indicates a wos case that is not yet published to journal
+---------------------------------------------------------------------------------------------
+
+*************************
+* PDF-Related Variables *
+*************************
+
+068 has_pdf_parsed ===> Indicates CORD-19 6 GB of data includes a parsed pdf in json format
+VERY IMPORTANT Variable
+---------------------------------------------------------------------------------------------
+069 has_pdf_dwl_RE_1 ===> subfield.lab recode 1.
+False; indicates that we currently do not have a full text pdf of
+the publication
+
+As of today [April 8th], I counted potentially 4, 548 publications
+for which we dont have a PDF.
+---------------------------------------------------------------------------------------------
+070 has_pdf_parsed_RE_1 ===> subfield.lab recode 1.
+False; indicates that we currently do not have a parsed pdf of
+the publication
+---------------------------------------------------------------------------------------------
+071 has_pmc_xml_parse
+---------------------------------------------------------------------------------------------
+072 full_text_file ===> CORD-19 got the full pdf access from four sources:
+biorxiv_medrxiv
+comm_use
+custom_license
+noncomm_use
+---------------------------------------------------------------------------------------------
+073 url ===> link to all the PDFs
+---------------------------------------------------------------------------------------------
+074 source_x
+---------------------------------------------------------------------------------------------
+075 Microsoft Academic Paper ID
+---------------------------------------------------------------------------------------------
+076 WHO #Covidence ===> CORD-19 use who unique id system
+---------------------------------------------------------------------------------------------
+077 no_meta_parsed_pdf ===> decommissioned
+---------------------------------------------------------------------------------------------
+078 doi
+---------------------------------------------------------------------------------------------
+079 pmcid
+---------------------------------------------------------------------------------------------
+080 pubmed_id
+---------------------------------------------------------------------------------------------
+081 license
+---------------------------------------------------------------------------------------------
+082 cord_uid
+---------------------------------------------------------------------------------------------
+083 sha ===> Important. Json file name for each of the 37, 000+ parsed pdfs. Quick way to
+iterate thru and load each json file.
+---------------------------------------------------------------------------------------------
+084 author_first_name__chal_pdf_meta ===> decommissioned
+---------------------------------------------------------------------------------------------
+085 gender_1 ===> decommissioned
+---------------------------------------------------------------------------------------------
+086 accession_number_lit
+---------------------------------------------------------------------------------------------
+087 doi_lit
+---------------------------------------------------------------------------------------------
+
+WOS PUBLICATION VARIABLES
+
+088 PT
+---------------------------------------------------------------------------------------------
+089 AU
+---------------------------------------------------------------------------------------------
+090 BA
+---------------------------------------------------------------------------------------------
+091 BE
+---------------------------------------------------------------------------------------------
+092 GP
+---------------------------------------------------------------------------------------------
+093 AF
+---------------------------------------------------------------------------------------------
+094 BF
+---------------------------------------------------------------------------------------------
+095 CA
+---------------------------------------------------------------------------------------------
+096 TI
+---------------------------------------------------------------------------------------------
+097 SO
+---------------------------------------------------------------------------------------------
+098 SE
+---------------------------------------------------------------------------------------------
+099 BS
+---------------------------------------------------------------------------------------------
+100 LA
+---------------------------------------------------------------------------------------------
+101 DT
+---------------------------------------------------------------------------------------------
+102 CT
+---------------------------------------------------------------------------------------------
+103 CY
+---------------------------------------------------------------------------------------------
+104 CL
+---------------------------------------------------------------------------------------------
+105 SP
+---------------------------------------------------------------------------------------------
+106 HO
+---------------------------------------------------------------------------------------------
+107 DE
+---------------------------------------------------------------------------------------------
+108 ID
+---------------------------------------------------------------------------------------------
+109 AB
+---------------------------------------------------------------------------------------------
+110 C1
+---------------------------------------------------------------------------------------------
+111 RP
+---------------------------------------------------------------------------------------------
+112 EM
+---------------------------------------------------------------------------------------------
+113 RI
+---------------------------------------------------------------------------------------------
+114 OI
+---------------------------------------------------------------------------------------------
+115 FU
+---------------------------------------------------------------------------------------------
+116 FX
+---------------------------------------------------------------------------------------------
+117 CR
+---------------------------------------------------------------------------------------------
+118 NR
+---------------------------------------------------------------------------------------------
+119 TC
+---------------------------------------------------------------------------------------------
+120 Z9
+---------------------------------------------------------------------------------------------
+121 U1
+---------------------------------------------------------------------------------------------
+122 U2
+---------------------------------------------------------------------------------------------
+123 PU
+---------------------------------------------------------------------------------------------
+124 PI
+---------------------------------------------------------------------------------------------
+125 PA
+---------------------------------------------------------------------------------------------
+126 SN
+---------------------------------------------------------------------------------------------
+127 EI
+---------------------------------------------------------------------------------------------
+128 BN
+---------------------------------------------------------------------------------------------
+129 J9
+---------------------------------------------------------------------------------------------
+130 JI
+---------------------------------------------------------------------------------------------
+131 PD
+---------------------------------------------------------------------------------------------
+132 PY
+---------------------------------------------------------------------------------------------
+133 VL
+---------------------------------------------------------------------------------------------
+134 IS
+---------------------------------------------------------------------------------------------
+135 PN
+---------------------------------------------------------------------------------------------
+136 SU
+---------------------------------------------------------------------------------------------
+137 SI
+---------------------------------------------------------------------------------------------
+138 MA
+---------------------------------------------------------------------------------------------
+139 BP
+---------------------------------------------------------------------------------------------
+140 EP
+---------------------------------------------------------------------------------------------
+141 AR
+---------------------------------------------------------------------------------------------
+142 DI
+---------------------------------------------------------------------------------------------
+143 D2
+---------------------------------------------------------------------------------------------
+144 EA
+---------------------------------------------------------------------------------------------
+145 PG
+---------------------------------------------------------------------------------------------
+146 WC
+---------------------------------------------------------------------------------------------
+147 SC
+---------------------------------------------------------------------------------------------
+148 GA
+---------------------------------------------------------------------------------------------
+149 UT
+---------------------------------------------------------------------------------------------
+150 PM
+---------------------------------------------------------------------------------------------
+151 OA
+---------------------------------------------------------------------------------------------
+152 HC
+---------------------------------------------------------------------------------------------
+153 HP
+---------------------------------------------------------------------------------------------
+154 DA
+---------------------------------------------------------------------------------------------
+
+WOS CITATION VARIABLES
+
+155 Title
+---------------------------------------------------------------------------------------------
+156 Authors
+---------------------------------------------------------------------------------------------
+157 Corporate Authors
+---------------------------------------------------------------------------------------------
+158 Editors
+---------------------------------------------------------------------------------------------
+159 Book Editors
+---------------------------------------------------------------------------------------------
+160 Source Title
+---------------------------------------------------------------------------------------------
+161 Publication Date
+---------------------------------------------------------------------------------------------
+162 Publication Year
+---------------------------------------------------------------------------------------------
+163 Volume
+---------------------------------------------------------------------------------------------
+164 Issue
+---------------------------------------------------------------------------------------------
+165 Part Number
+---------------------------------------------------------------------------------------------
+166 Supplement
+---------------------------------------------------------------------------------------------
+167 Special Issue
+---------------------------------------------------------------------------------------------
+168 Beginning Page
+---------------------------------------------------------------------------------------------
+169 Ending Page
+---------------------------------------------------------------------------------------------
+170 Article Number
+---------------------------------------------------------------------------------------------
+171 DOI
+---------------------------------------------------------------------------------------------
+172 Conference Title
+---------------------------------------------------------------------------------------------
+173 Conference Date
+---------------------------------------------------------------------------------------------
+174 Total Citations
+---------------------------------------------------------------------------------------------
+175 Average per Year
+---------------------------------------------------------------------------------------------
+176 2019 ===> number of citations received in 2019
+---------------------------------------------------------------------------------------------
+177 2020
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
