@@ -1,6 +1,6 @@
 # subFIELD.lab-Covid-19-pub-database
 
-Welcome to the official home of the subFIELD.lab covid-19 [linked] publication database. Research on covid-19 is marching full steam and is being published at a lightning fast speed, and will continue in a foreseeable future, in an increasing number of fields.
+Welcome to the official home of the subFIELD.lab's covid-19 publication database (Link-Cov). Research on covid-19 is marching full steam and is being published at a lightning fast speed, and will continue in a foreseeable future, in an increasing number of fields.
 
 Therefore, we need a unique database project merging multiple sources of bibliometric information on Covid-19 scientific work. This is what we are building as an open-source and collaborative effort. Please feel free to contact me if you are interested in contributing in any way or if you have any questions.
 
@@ -14,7 +14,7 @@ b. Building the first ever (to my knowledge) daily scientific citations tracking
 
 If you are interested to partake in this collective effort, please email me at f.lachapelle@alumni.ubc.ca
 
-subFIELD.lab Covid-19 publications databases:
+subFIELD.lab's [Link-Cov] Covid-19 publications databases:
 
 subfield.lab_covid_19_pub_database_2020_04_08__5391_cases.csv [zip file] [version with only validated covid-19 related publications]
 
