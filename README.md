@@ -42,6 +42,6 @@ Our position, or perspective is different. We are more approaching the LitCovid 
 
 As data developers, our goal is to link these existing datasets to additional bibliometric sources on Covid-19 to generate new data-points/variables (gender, institutional affiliation, monthly citation counts, data used, disciplines, academic/industry collaboration; see documentation).
 
-As social scientists, we cannot participate directly in the 'epidemiological' or medical research on covid-19, but our goal is to help those carrying those crucial endeavors while also providing other stakeholders with a wealth of data for both general and specialized statistical querying.
+As social scientists (sociologists of science), we cannot participate directly in the 'epidemiological' or medical research on covid-19, but our goal is to help those carrying those crucial endeavors while also providing other stakeholders with a wealth of data for both general and specialized statistical querying.
 
 If you are interested to partake in this collective effort, please email me at f.lachapelle@alumni.ubc.ca
