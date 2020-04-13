@@ -16,7 +16,7 @@ If you are interested to partake in this collective effort, please email me at f
 
 subFIELD.lab's [Link-Cov] Covid-19 publications databases:
 
-Link_COV_P_database_2020_04_13__6333_cases.csv [zip file] [version with only validated covid-19 related publications]
+Link_COV_P_database_2020_04_13__6384_cases.csv [zip file] [version with only validated covid-19 related publications]
 
 Link_COV_P_database_2020_04_13__9237_cases.csv[zip file] [version with all CORD-19 and coronaviruses publications from 2019 and 2020 - not clean [raw]]
 
