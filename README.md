@@ -16,9 +16,9 @@ If you are interested to partake in this collective effort, please email me at f
 
 subFIELD.lab's [Link-Cov] Covid-19 publications databases:
 
-subfield.lab_covid_19_pub_database_2020_04_10__5879_cases.csv [zip file] [version with only validated covid-19 related publications]
+Link_COV_P_database_2020_04_13__6333_cases.csv [zip file] [version with only validated covid-19 related publications]
 
-subfield_lab_covid_19_pub_database_2020_04_06__8734_cases.csv[zip file] [version with all CORD-19 and coronaviruses publications from 2019 and 2020 - not clean [raw]]
+Link_COV_P_database_2020_04_13__9237_cases.csv[zip file] [version with all CORD-19 and coronaviruses publications from 2019 and 2020 - not clean [raw]]
 
 To cite (Lachapelle, 2020; Lu, Chen, & Allot, 2020 [LitCovid]; Goldbloom et al. [CORD-19]; Garnica-Carreno, Jose, 2020 [WHO])
 
