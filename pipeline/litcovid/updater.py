@@ -34,6 +34,6 @@ def update_litcovid_tsv():
     new_pmids = updated_litcovid['pmid'][~updated_litcovid['pmid'].isin(previous_litcovid['pmid'])]
     
     LOGGER.info(f'Saved updated data/litcovid/litcovid.tsv.')
-    # new.to_csv(LITCOVID / 'litcovid.tsv')
+    litcovid.to_csv(LITCOVID / 'litcovid.tsv', index= False, sep = '\t')
 
     return new_pmids
