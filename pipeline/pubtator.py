@@ -23,6 +23,7 @@ __author__ = 'awakenedhaki'
 # DEPENDENCIES
 import requests
 
+from urllib.parse import urlencode
 from uritemplate import URITemplate
 
 # CONSTANTS
@@ -34,12 +35,8 @@ class PubTator(object):
     def __init__(self, format):
         if format not in ('pubtator', 'biocxml', 'biocjson'):
             raise ValueError('Invalid PubTator format.')
-        self.URL = BASE.expand({'format': format})
+        self.url = BASE.expand({'format': format})
 
     def get(self, **params):
-        with requests.get(BASE, params = params) as resp:
+        with requests.get(self.url, params = params) as resp:
             return resp.content
-
-if __name__ == '__main__':
-    pubtator = PubTator('biocjson')
-    print(pubtator.get(pmids = '23819905'))
