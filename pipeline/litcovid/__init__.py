@@ -33,4 +33,5 @@ LOGGER.addHandler(file_handler)
 
 # AVOID CIRCULAR IMPORTS
 from litcovid.pubtator import PubTator
+from litcovid.scraper import scrape_litcovid
 from litcovid.updater import update_litcovid_tsv
