@@ -6,7 +6,7 @@ from pathlib import Path
 from time import strptime
 
 # CONSTANTS
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / 'data'
 LITCOVID = DATA / 'litcovid'
 
@@ -32,5 +32,5 @@ file_handler.setFormatter(file_format)
 LOGGER.addHandler(file_handler)
 
 # AVOID CIRCULAR IMPORTS
-from pipeline.pubtator import PubTator
-from pipeline.updater import update_litcovid_tsv
+from litcovid.pubtator import PubTator
+from litcovid.updater import update_litcovid_tsv
