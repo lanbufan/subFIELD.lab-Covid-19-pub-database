@@ -1,6 +1,6 @@
-# subFIELD.lab-Covid-19-pub-database
+# subfield.lab-Link-Cov-P database
 
-Welcome to the official home of the subFIELD.lab's covid-19 publication database (Link-Cov). Research on covid-19 is marching full steam and is being published at a lightning fast speed, and will continue in a foreseeable future, in an increasing number of fields.
+Welcome to the official home of the subFIELD.lab's covid-19 publication database (Link-Cov-P). Research on covid-19 is marching full steam and is being published at a lightning fast speed, and will continue in a foreseeable future, in an increasing number of fields.
 
 Therefore, we need a unique database project merging multiple sources of bibliometric information on Covid-19 scientific work. This is what we are building as an open-source and collaborative effort. Please feel free to contact me if you are interested in contributing in any way or if you have any questions.
 
@@ -13,12 +13,6 @@ a. Building data pipelines to automate harvesting and parsing of publication ful
 b. Building the first ever (to my knowledge) daily scientific citations tracking of academic works. Covid-19 research is pumping literally 100s of publications daily, and therefore, traditional yearly citations tracking approaches is not suitable. I expand in details on that task in both the to-do.txt/page and methodology.txt/page.
 
 If you are interested to partake in this collective effort, please email me at f.lachapelle@alumni.ubc.ca
-
-subFIELD.lab's [Link-Cov] Covid-19 publications databases:
-
-Link_COV_P_database_2020_04_13__6384_cases.csv [zip file] [version with only validated covid-19 related publications]
-
-Link_COV_P_database_2020_04_13__9237_cases.csv[zip file] [version with all CORD-19 and coronaviruses publications from 2019 and 2020 - not clean [raw]]
 
 To cite (Lachapelle, 2020; Lu, Chen, & Allot, 2020 [LitCovid]; Goldbloom et al. [CORD-19]; Garnica-Carreno, Jose, 2020 [WHO])
 
@@ -35,6 +29,10 @@ CORD-19 Data
 The COVID-19 Open Research Dataset Challenge (CORD-19) hosted on kaggle domain an "an AI challenge powered by AI2, CZI, MSR, Georgetown, NIH & The White House". In their call for action, the task force identify a limited number of important questions related to covid-19, and they asked the "world's artificial intelligence experts to develop text and data mining tools that can help the medical community develop answers to high priority scientific questions". Literally 1, 000 of researchers and AI/ML folks have joined to collaborate and compete in that challenge.
 
 At its core, CORD-19 released a raw dataset containing more than 47, 000 scientific pieces along with 36, 000+ already parsed full text PDF (6GB of data). Their raw bibliometric dataset contains 15 meta-data fields (see documentations for details).
+
+Academia.Edu
+
+(description coming soon)
 
 So you might ask, well, what else is there to do, really? What does subFIELD.lab covid-19 publication database have to offers that LitCovid and CORD-19 don't? It is certainty enough data to allow data scientists to run their AI.ML analyses and models. And it is probably enough data to assist covid-19 researchers themselves in their work.
 
