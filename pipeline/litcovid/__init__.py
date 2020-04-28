@@ -2,15 +2,10 @@
 import pandas as pd
 import logging
 
-from pathlib import Path
-from time import strptime
+from pipeline import DATA, DATE_FORMAT
 
 # CONSTANTS
-ROOT = Path(__file__).resolve().parents[2]
-DATA = ROOT / 'data'
 LITCOVID = DATA / 'litcovid'
-
-DATE_FORMAT = r'%d-%m-%Y'
 
 # LOGGING
 LOGGER = logging.getLogger(__file__)
@@ -32,6 +27,6 @@ file_handler.setFormatter(file_format)
 LOGGER.addHandler(file_handler)
 
 # AVOID CIRCULAR IMPORTS
-from litcovid.pubtator import PubTator
-from litcovid.scraper import scrape_litcovid
-from litcovid.updater import update_litcovid_tsv
+from pipeline.litcovid.pubtator import PubTator
+from pipeline.litcovid.scraper import scrape_litcovid
+from pipeline.litcovid.updater import update_litcovid_tsv
