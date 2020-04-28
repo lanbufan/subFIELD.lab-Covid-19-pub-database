@@ -6,7 +6,7 @@ import pandas as pd
 
 from io import StringIO
 from datetime import datetime
-from litcovid import LOGGER, LITCOVID, DATE_FORMAT
+from pipeline.litcovid import LOGGER, LITCOVID, DATE_FORMAT
 from requests.exceptions import HTTPError
 
 # CONSTANTS
