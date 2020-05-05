@@ -17,8 +17,7 @@ def dwl_pdf():
                     sleep(20)
                     wait.until(ec.presence_of_element_located((By.XPATH, '/html/body/div[3]/p/a')))
                     driver.find_elements_by_xpath('/html/body/div[3]/p/a')
-                    email = 'f.lachapelle@alumni.ubc.ca'
-                    pwd = 'Marion#fourcade@20ll'
+
                     email_box= driver.find_element_by_xpath('//*[@id="login-modal-email-input"]')
                     email_box.send_keys(email)
                     pwd = driver.find_element_by_xpath('//*[@id="login-modal-password-input"]')
