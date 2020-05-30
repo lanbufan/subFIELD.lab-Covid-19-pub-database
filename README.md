@@ -1,45 +1,51 @@
-# subfield.lab-Link-Cov-P database
+# Link-Cov-P Dataset
 
-Welcome to the official home of the subFIELD.lab's covid-19 publication database (Link-Cov-P). Research on covid-19 is marching full steam and is being published at a lightning fast speed, and will continue in a foreseeable future, in an increasing number of fields.
+What Covid-19 bibliometric data are you using for this project?
 
-Therefore, we need a unique database project merging multiple sources of bibliometric information on Covid-19 scientific work. This is what we are building as an open-source and collaborative effort. Please feel free to contact me if you are interested in contributing in any way or if you have any questions.
+Our goal is to provide (1) an up-to-date and (2) comprehensive bibliometric database on covid-19 publications with daily updates (22 299 cases as of today). We consolidate and link Covid-19 related publications from more than three authoritative sources.  In other words, our Record Linkage database is building on a number of ongoing and important projects; LitCovid and CORD-19, and World Health Organization's Global research on coronavirus disease (COVID-19).
 
-Our goal is to provide (1) an up-to-date and (2) comprehensive bibliometric database on covid-19 publications with daily updates (5, 391 cases as of today). We consolidate and link Covid-19 related publications from more than four authoritative sources.  In other words, our database is building on a number of ongoing and important projects; World Health Organization's Global research on coronavirus disease (COVID-19), LitCovid and CORD-19.
+## Getting Started
 
-At this point of the project, the process of automating the pipeline and data linking of those sources into one data frame is mostly done. But there is a lot of exciting work ahead if you are interested to join us. We envision this project as an open-source and collaborative project. The most pressing tasks to undertake are:
+For researchers or data scientists looking to explore the dataset, you only need to donwload:
 
-a. Building data pipelines to automate harvesting and parsing of publication full text (pdf) as this is the best sources of meta-data points (citations/references, names, inst. affiliations).
+* the latest version of the [Link-Cov-P dataset](Link-Cov-P_2020_05_28_public_clean.zip)
 
-b. Building the first ever (to my knowledge) daily scientific citations tracking of academic works. Covid-19 research is pumping literally 100s of publications daily, and therefore, traditional yearly citations tracking approaches is not suitable. I expand in details on that task in both the to-do.txt/page and methodology.txt/page.
+For those interested in the "back-end" of things, or in helping the development of this project, please get in touch with me:
 
-If you are interested to partake in this collective effort, please email me at f.lachapelle@alumni.ubc.ca
+* The current dev priorities for me goes to the full development of the [Daily Scientific Citation Tracker](https://github.com/lanbufan/Daily-Scientific-Citation-Tracker).
+* That said, in the spirit of open-source, I will start with providing a detailled methodology write-up and then, when time permit, I want to do a reformatting of the Python code taking care of the daily Record Linkage.
 
-To cite (Lachapelle, 2020; Lu, Chen, & Allot, 2020 [LitCovid]; Goldbloom et al. [CORD-19]; Garnica-Carreno, Jose, 2020 [WHO])
+### Prerequisites
 
-WHO's Global research on coronavirus disease (COVID-19)
+* currently, just a CSV download, no source code
 
-(description coming soon)
+### Installing
 
-LitCovid Data
+* currently, just a CSV download, no source code
 
-LitCovid [https://www.ncbi.nlm.nih.gov/research/coronavirus/] is a "curated literature hub for tracking up-to-date scientific information about the 2019 novel Coronavirus" maintained by the BioNLP Research Group at the National Center for Biotechnology Information(NCBI), U.S. National Library of Medicine(LM). Updated daily, LitCovid generated its list of covid-19 related-articles using PubMed. The complete list of all those articles (3, 368 as of today) is on their website. The only downside from a bibliometric perspective is that the downloadable covid-19 publication dataset they offer only includes a very limited number of meta-data fields (author(s), journal, keywords, title, type of publication, and year of publication).
+## Contributing
 
-CORD-19 Data
+Plese feel free to email [me](f.lachapelle@alumni.ubc.ca) if you have any questions or if you are interested in contributing.
 
-The COVID-19 Open Research Dataset Challenge (CORD-19) hosted on kaggle domain an "an AI challenge powered by AI2, CZI, MSR, Georgetown, NIH & The White House". In their call for action, the task force identify a limited number of important questions related to covid-19, and they asked the "world's artificial intelligence experts to develop text and data mining tools that can help the medical community develop answers to high priority scientific questions". Literally 1, 000 of researchers and AI/ML folks have joined to collaborate and compete in that challenge.
+## Authors
 
-At its core, CORD-19 released a raw dataset containing more than 47, 000 scientific pieces along with 36, 000+ already parsed full text PDF (6GB of data). Their raw bibliometric dataset contains 15 meta-data fields (see documentations for details).
+* Francois Lachapelle - subFIELD.lab
 
-Academia.Edu
+## License
 
-(description coming soon)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-So you might ask, well, what else is there to do, really? What does subFIELD.lab covid-19 publication database have to offers that LitCovid and CORD-19 don't? It is certainty enough data to allow data scientists to run their AI.ML analyses and models. And it is probably enough data to assist covid-19 researchers themselves in their work.
+## Acknowledgments
 
-Our position, or perspective is different. We are more approaching the LitCovid & CORD-19 data as data developers and social scientists.
+At its foundation, this project is a Record Linkage initiative. Therefore, it would not be possible without the great work of researchers at:
 
-As data developers, our goal is to link these existing datasets to additional bibliometric sources on Covid-19 to generate new data-points/variables (gender, institutional affiliation, monthly citation counts, data used, disciplines, academic/industry collaboration; see documentation).
+* Goldbloom et al., 2020 - [CORD-19](https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge)
+* Lu, Chen, & Allot, 2020 - [LitCovid](https://www.ncbi.nlm.nih.gov/research/coronavirus/)
+* Garnica-Carreno, Jose, 2020 [WHO]
 
-As social scientists (sociologists of science), we cannot participate directly in the 'epidemiological' or medical research on covid-19, but our goal is to help those carrying those crucial endeavors while also providing other stakeholders with a wealth of data for both general and specialized statistical querying.
+For advisory support:
 
-If you are interested to partake in this collective effort, please email me at f.lachapelle@alumni.ubc.ca
+* John McLevey - [UWaterloo](https://github.com/mclevey)
+* Adam Howe - Statistics Canada | UBC
+
+
